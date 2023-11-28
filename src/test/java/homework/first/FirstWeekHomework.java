@@ -6,14 +6,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 public class FirstWeekHomework {
 
+    WebDriver driver = null;
+
     @Test
     public void successfulLoginTest(){
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
 
         driver.get("https://www.saucedemo.com/");
 
@@ -28,14 +31,12 @@ public class FirstWeekHomework {
 
         String currentURL = driver.getCurrentUrl();
         Assert.assertEquals(currentURL, "https://www.saucedemo.com/inventory.html");
-
-        driver.quit();
     }
 
     @Test
     public void unsuccessfulLoginTest(){
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
 
         driver.get("https://www.saucedemo.com/");
 
@@ -50,7 +51,10 @@ public class FirstWeekHomework {
 
         String currentURL = driver.getCurrentUrl();
         Assert.assertEquals(currentURL, "https://www.saucedemo.com/inventory.html");
+    }
 
+    @AfterMethod
+    public void tearDown(){
         driver.quit();
     }
 }
