@@ -49,8 +49,8 @@ public class FirstWeekHomework {
         WebElement loginButtonID = driver.findElement(By.id("login-button"));
         loginButtonID.click();
 
-        String currentURL = driver.getCurrentUrl();
-        Assert.assertEquals(currentURL, "https://www.saucedemo.com/inventory.html");
+        WebElement errorFieldID = driver.findElement(By.xpath("//*[@id=\"login_button_container\"]/div/form/div[3]/h3"));
+        Assert.assertEquals(errorFieldID.getText(), "Epic sadface: Username and password do not match any user in this service");
     }
 
     @AfterMethod
